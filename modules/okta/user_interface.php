@@ -12,8 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_unlock'])) {
         $statusClass = 'warning';
     } else {
         // --- LOGIKA ODPOWIADAJĄCA API OKTA ---
-        $oktaDomain = 'https://twoja-domena.okta.com';
-        $apiToken = 'TWÓJ_OKTA_API_TOKEN';
+        $oktaDomain = 'https://feerorg.okta.com';
+        $apiToken = '00r5vqUCdiduPgz7l9JRvlzfnaFY-Pci2YINBIf6SL';
 
         $url = $oktaDomain . '/api/v1/users/' . urlencode($email) . '/lifecycle/unlock';
 
@@ -77,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_unlock'])) {
         <div class="col-md-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Odblokuj konto</h5>
-                    <p class="card-text">Jeśli konto zostało zablokowane po nieudanych logowaniach, użyj tej funkcji.</p>
+                    <h5 class="card-title">Odblokuj konto TC </h5>
+                    <p class="card-text">Jeśli konto zostało  w systemie TC zostło zablokowane po nieudanych logowaniach, użyj tej funkcji.</p>
                     <form id="unlockForm" method="POST">
                         <div class="mb-3">
                             <label for="email-unlock" class="form-label">Adres e-mail</label>
