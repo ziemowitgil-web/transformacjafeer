@@ -1,35 +1,19 @@
 <?php
-// user_interface.php
-
 session_start();
 
 $statusMessage = '';
 $statusClass = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'] ?? '';
     $email = trim($_POST['email'] ?? '');
 
     if ($email === '') {
         $statusMessage = "Podaj adres e-mail!";
         $statusClass = 'warning';
     } else {
-        switch ($action) {
-            case 'unlock':
-                // Tutaj wywołaj API Okta do odblokowania konta
-                $statusMessage = "Konto <strong>$email</strong> zostało odblokowane!";
-                $statusClass = 'success';
-                break;
-            case 'deactivate':
-                // Tutaj wywołaj API Okta do dezaktywacji konta (RODO)
-                $statusMessage = "Konto <strong>$email</strong> zostało dezaktywowane!";
-                $statusClass = 'warning';
-                break;
-            default:
-                $statusMessage = "Nieznana akcja!";
-                $statusClass = 'warning';
-                break;
-        }
+        // Tutaj możesz podłączyć logikę odblokowywania konta w Okta
+        $statusMessage = "Konto <strong>$email</strong> zostało odblokowane!";
+        $statusClass = 'success';
     }
 }
 ?>
@@ -39,72 +23,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zarządzanie kontem FEER – Okta</title>
-    <link rel="stylesheet" href="https://mojekonto.feer.org.pl/style.css"> <!-- Twój CSS FEER -->
+    <title>Moduł Odblokowywania Kont – FEER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<header class="header">
-    <div class="container header-container">
-        <div class="logo">
-            <img src="https://feer.org.pl/files/ban/banner-1.png" alt="FEER Logo">
-
-        </div>
-        <nav class="menu">
-            <a href="index.php">Strona główna</a>
-            <a href="#faq">FAQ</a>
-        </nav>
-    </div>
-</header>
-
-<section class="hero">
-    <div class="container text-center">
-        <h1>Odblokowanie konta </h1>
-    </div>
-</section>
-
-<section id="okta-module" class="section bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-
-        <?php if ($statusMessage): ?>
-            <div class="<?= $statusClass ?> text-center" style="margin-bottom:20px;">
-                <?= $statusMessage ?>
-            </div>
-        <?php endif; ?>
-
-        <div class="two-columns">
-            <!-- Odblokowanie konta -->
-            <div class="column card">
-                <h3>Odblokuj konto</h3>
-                <p>Użyj tej funkcji, jeśli konto zostało zablokowane po nieudanych logowaniach.</p>
-                <form method="POST">
-                    <input type="hidden" name="action" value="unlock">
-                    <label for="email-unlock">Adres e-mail:</label><br>
-                    <input type="email" id="email-unlock" name="email" required placeholder="np. jan.kowalski@feer.org.pl" style="width:100%; padding:8px; margin:10px 0; border-radius:6px; border:1px solid #d1d5db;">
-                    <button type="submit" class="btn btn-primary btn-lg">Odblokuj konto</button>
-                </form>
-            </div>
-
-
-
-        <!-- FAQ -->
-        <h2 class="section-title" id="faq" style="margin-top:60px;">FAQ – Moduł Okta</h2>
-        <details>
-            <summary>Jak działa odblokowanie konta?</summary>
-            <p>Po wprowadzeniu adresu e-mail, system wysyła polecenie do Okta, aby odblokować konto. Konto odblokowane jest natychmiast.</p>
-        </details>
-
-        <details>
-            <summary>Jak długo trwa odblokowanie konta?</summary>
-            <p>Zwykle odblokowanie trwa kilka sekund – po odświeżeniu strony użytkownik może zalogować się ponownie.</p>
-        </details>
-
+        <a class="navbar-brand" href="#">FEER IT</a>
     </div>
-</section>
+</nav>
 
-<footer class="footer">
-    &copy; 2025 Fundacja Edukacja FEER
-</footer>
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1>Odblokowywanie konta FEER</h1>
+        <p>Wprowadź adres e-mail, aby odblokować konto użytkownika.</p>
+    </div>
 
+    <?php if ($statusMessage): ?>
+        <div class="alert alert-<?= $statusClass ?> text-center">
+            <?= $statusMessage ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Odblokuj konto</h5>
+                    <p class="card-text">Jeśli konto zostało zablokowane po nieudanych logowaniach, użyj tej funkcji.</p>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="email-unlock" class="form-label">Adres e-mail</label>
+                            <input type="email" class="form-control" id="email-unlock" name="email" placeholder="np. jan.kowalski@feer.org.pl" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Odblokuj konto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
