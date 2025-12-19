@@ -3,7 +3,6 @@
 
 session_start();
 
-// Obsługa formularzy (przykładowo, tylko wizualnie)
 $statusMessage = '';
 $statusClass = '';
 
@@ -53,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <nav class="menu">
             <a href="index.php">Strona główna</a>
-            <a href="#okta-module">Moduł Okta</a>
             <a href="#faq">FAQ</a>
         </nav>
     </div>
@@ -61,8 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <section class="hero">
     <div class="container text-center">
-        <h1>Zarządzanie kontem FEER</h1>
-        <p>Moduł umożliwia odblokowanie konta lub jego dezaktywację zgodnie z RODO.</p>
+        <h1>Odblokowanie konta </h1>
     </div>
 </section>
 
@@ -88,18 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
             </div>
 
-            <!-- Dezaktywacja konta -->
-            <div class="column card">
-                <h3>Zamknij / dezaktywuj konto</h3>
-                <p>Opcja dostępna zgodnie z RODO. Konto zostanie zablokowane i usunięte z systemów FEER.</p>
-                <form method="POST">
-                    <input type="hidden" name="action" value="deactivate">
-                    <label for="email-deactivate">Adres e-mail:</label><br>
-                    <input type="email" id="email-deactivate" name="email" required placeholder="np. jan.kowalski@feer.org.pl" style="width:100%; padding:8px; margin:10px 0; border-radius:6px; border:1px solid #d1d5db;">
-                    <button type="submit" class="btn btn-secondary btn-lg">Dezaktywuj konto</button>
-                </form>
-            </div>
-        </div>
+
 
         <!-- FAQ -->
         <h2 class="section-title" id="faq" style="margin-top:60px;">FAQ – Moduł Okta</h2>
@@ -107,10 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <summary>Jak działa odblokowanie konta?</summary>
             <p>Po wprowadzeniu adresu e-mail, system wysyła polecenie do Okta, aby odblokować konto. Konto odblokowane jest natychmiast.</p>
         </details>
-        <details>
-            <summary>Co oznacza dezaktywacja konta RODO?</summary>
-            <p>Konto zostaje zablokowane i usunięte z systemów FEER, w tym z SSO i dostępu do wszystkich aplikacji.</p>
-        </details>
+
         <details>
             <summary>Jak długo trwa odblokowanie konta?</summary>
             <p>Zwykle odblokowanie trwa kilka sekund – po odświeżeniu strony użytkownik może zalogować się ponownie.</p>
@@ -120,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </section>
 
 <footer class="footer">
-    &copy; 2025 Fundacja Edukacja FEER | Wszystkie prawa zastrzeżone
+    &copy; 2025 Fundacja Edukacja FEER
 </footer>
 
 </body>
