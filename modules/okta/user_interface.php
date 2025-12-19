@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zarządzanie kontem FEER – Okta</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Twój CSS FEER -->
+    <link rel="stylesheet" href="https://mojekonto.feer.org.pl/style.css"> <!-- Twój CSS FEER -->
 </head>
 <body>
 
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container header-container">
         <div class="logo">
             <img src="https://feer.org.pl/files/ban/banner-1.png" alt="FEER Logo">
-            <span>FEER IT</span>
+
         </div>
         <nav class="menu">
             <a href="index.php">Strona główna</a>
